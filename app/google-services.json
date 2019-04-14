@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "207185539797",
+    "firebase_url": "https://gymjorb.firebaseio.com",
+    "project_id": "gymjorb",
+    "storage_bucket": "gymjorb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207185539797:android:49e1bdbac1d2f9ca",
+        "android_client_info": {
+          "package_name": "com.jorbital.gymjorb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207185539797-lpa4iapfrooas97ff65ai4k6sov9k6ht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jorbital.gymjorb",
+            "certificate_hash": "c6ab12bc493087ca9de613e952796bc38eaf494b"
+          }
+        },
+        {
+          "client_id": "207185539797-1035os3skf12u7dj90qddujckvjo350g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjX8gm7CstUTMSe37pfFezoTlBfaZ_Sw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207185539797-1035os3skf12u7dj90qddujckvjo350g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
