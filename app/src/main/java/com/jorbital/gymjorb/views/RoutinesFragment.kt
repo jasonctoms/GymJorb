@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb
+package com.jorbital.gymjorb.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.jorbital.gymjorb.R
+import com.jorbital.gymjorb.RoutinesFragmentArgs
 
 class RoutinesFragment : Fragment() {
     private var userId: String? = null

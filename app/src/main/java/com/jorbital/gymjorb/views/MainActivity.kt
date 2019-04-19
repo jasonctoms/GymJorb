@@ -1,9 +1,10 @@
-package com.jorbital.gymjorb
+package com.jorbital.gymjorb.views
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import com.jorbital.gymjorb.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

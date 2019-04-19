@@ -1,13 +1,13 @@
-package com.jorbital.gymjorb
+package com.jorbital.gymjorb.views
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.firebase.ui.auth.AuthUI
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.jorbital.gymjorb.R
+import com.jorbital.gymjorb.utils.RoundedBottomSheetDialogFragment
+import com.jorbital.gymjorb.utils.toast
 import kotlinx.android.synthetic.main.fragment_bottomsheet.view.*
 
 class BottomNavigationDrawerFragment : RoundedBottomSheetDialogFragment() {

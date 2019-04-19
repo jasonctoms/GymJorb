@@ -1,9 +1,10 @@
-package com.jorbital.gymjorb
+package com.jorbital.gymjorb.utils
 
 import android.app.Dialog
 import android.os.Bundle
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.jorbital.gymjorb.R
 
 /**
  * [BottomSheetDialogFragment] that uses a custom

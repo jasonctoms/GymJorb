@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb
+package com.jorbital.gymjorb.utils
 
 import android.content.Context
 import android.widget.Toast
