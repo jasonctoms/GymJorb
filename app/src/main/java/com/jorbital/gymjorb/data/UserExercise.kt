@@ -4,9 +4,9 @@ data class UserExercise(
     val userId: String = "",
     val name: String = "",
     val type: String = "",
-    val muscleGroups: Array<String>,
+    val muscleGroups: IntArray = IntArray(0),
     val timerValue: Int = 60,
-    val custom: Boolean
+    val custom: Boolean = false
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

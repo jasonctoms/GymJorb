@@ -1,13 +1,13 @@
 package com.jorbital.gymjorb.data
 
-import com.google.firebase.Timestamp
+import java.util.*
 
 data class Routine(
     val userId: String = "",
-    val name: String?,
-    val days: Array<String>,
-    val exercises: Array<Map<String, Int>>,
-    val lastCompleted: Timestamp? = null
+    val name: String? = null,
+    val days: IntArray = IntArray(0),
+    val exercises: Array<Map<String, Int>> = emptyArray(),
+    val lastCompleted: Date? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

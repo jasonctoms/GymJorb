@@ -4,7 +4,7 @@ data class DefaultExercise(
     val language: String = "en-US",
     val name: String = "",
     val type: String = "",
-    val muscleGroups: Array<String>
+    val muscleGroups: IntArray = IntArray(0)
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
