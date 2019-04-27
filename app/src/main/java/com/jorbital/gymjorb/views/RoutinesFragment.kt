@@ -45,8 +45,12 @@ class RoutinesFragment : Fragment() {
 
     private fun continueActivity() {
         vm = ViewModelProviders.of(this).get(RoutinesViewModel::class.java)
-        vm.data.observe(this, Observer<QuerySnapshot> { query ->
-            val test = query
+        vm.init(userId!!)
+        val routinesLiveData = vm.getUserRoutineLiveData()
+        routinesLiveData.observe(this, Observer<QuerySnapshot> { query ->
+            vm.setRoutinesList(query)
+            val test = vm.userRoutines
+            //TODO: update list (also todo: make list)
         })
     }
 }
