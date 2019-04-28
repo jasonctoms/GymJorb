@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.firebase.ui.auth.AuthUI
 import com.jorbital.gymjorb.R
-import com.jorbital.gymjorb.data.DefaultExerciseCreator
+import com.jorbital.gymjorb.utils.DefaultExerciseCreator
 import com.jorbital.gymjorb.utils.RoundedBottomSheetDialogFragment
 import com.jorbital.gymjorb.utils.toast
 import kotlinx.android.synthetic.main.fragment_bottomsheet.view.*

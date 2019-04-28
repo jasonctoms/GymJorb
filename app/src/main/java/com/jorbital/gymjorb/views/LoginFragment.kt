@@ -56,10 +56,7 @@ class LoginFragment : Fragment() {
             if (resultCode == Activity.RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
                 updateUser(user)
-                val userId = user?.uid
-                val action =
-                    LoginFragmentDirections.actionLoginFragmentToRoutinesFragment(userId)
-                this.findNavController().navigate(action)
+                this.findNavController().navigate(R.id.action_loginFragment_to_routinesFragment)
             } else {
                 if (response == null)
                 //TODO: user cancelled, decide what to do

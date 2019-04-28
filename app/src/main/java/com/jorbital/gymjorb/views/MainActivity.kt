@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showOrHideAppBar(show: Boolean) {
-        if (show) {
+    fun showOrHideAppBar(hasAppBar: Boolean) {
+        if (hasAppBar) {
             bar.visibility = View.VISIBLE
             fab.show()
         } else {
