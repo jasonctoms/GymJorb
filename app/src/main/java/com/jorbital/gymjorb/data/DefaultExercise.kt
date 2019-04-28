@@ -1,30 +1,61 @@
 package com.jorbital.gymjorb.data
 
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+
 data class DefaultExercise(
     val language: String = "en-US",
     val name: String = "",
-    val type: String = "",
-    val muscleGroups: IntArray = IntArray(0)
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+    val type: Int = ExerciseType.UNKNOWN.value,
+    val muscleGroups: List<Int> = emptyList(),
+    val keyString: String = ""
+)
 
-        other as DefaultExercise
+class DefaultExerciseCreator {
 
-        if (language != other.language) return false
-        if (name != other.name) return false
-        if (type != other.type) return false
-        if (!muscleGroups.contentEquals(other.muscleGroups)) return false
+    fun createDefaultExercises() {
+        val dbDefaults = FirebaseFirestore.getInstance().collection("defaultExercises")
+        val langUS = "en-US"
 
-        return true
+        val bbbpEng = DefaultExercise(
+            langUS,
+            "Barbell Bench Press",
+            ExerciseType.BARBELL.value,
+            listOf(MuscleGroup.CHEST.value, MuscleGroup.TRICEPS.value, MuscleGroup.BICEPS.value),
+            "bbbpEng"
+        )
+        updateFirestore(dbDefaults, bbbpEng)
+
+        val bbibpEng = DefaultExercise(
+            langUS,
+            "Barbell Incline Bench Press",
+            ExerciseType.BARBELL.value,
+            listOf(MuscleGroup.CHEST.value, MuscleGroup.TRICEPS.value, MuscleGroup.BICEPS.value),
+            "bbibpEng"
+        )
+        updateFirestore(dbDefaults, bbibpEng)
+
+        val mbcEng = DefaultExercise(
+            langUS,
+            "Machine Bicep Curl",
+            ExerciseType.MACHINE.value,
+            listOf(MuscleGroup.BICEPS.value),
+            "mbcEng"
+        )
+        updateFirestore(dbDefaults, mbcEng)
+
+        val mcfEng = DefaultExercise(
+            langUS,
+            "Machine Chest Fly",
+            ExerciseType.MACHINE.value,
+            listOf(MuscleGroup.CHEST.value),
+            "mcfEng"
+        )
+        updateFirestore(dbDefaults, mcfEng)
+
     }
 
-    override fun hashCode(): Int {
-        var result = language.hashCode()
-        result = 31 * result + name.hashCode()
-        result = 31 * result + type.hashCode()
-        result = 31 * result + muscleGroups.contentHashCode()
-        return result
+    private fun updateFirestore(collection: CollectionReference, e: DefaultExercise) {
+        collection.document(e.keyString).set(e)
     }
 }

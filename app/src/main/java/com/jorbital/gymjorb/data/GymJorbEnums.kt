@@ -35,3 +35,13 @@ enum class WeightUnit(val value: Int) {
 
     UNKNOWN(-1)
 }
+
+enum class ExerciseType(val value: Int) {
+    BARBELL(1),
+    DUMBBELL(2),
+    MACHINE(3),
+    CARDIO(4),
+    OTHER(5),
+
+    UNKNOWN(-1)
+}
