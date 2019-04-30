@@ -13,10 +13,11 @@ import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.data.Routine
 import com.jorbital.gymjorb.viewModels.RoutinesViewModel
 import kotlinx.android.synthetic.main.fragment_routines.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RoutinesFragment : BaseFragment() {
     override val hasAppBar: Boolean = true
-    private lateinit var vm: RoutinesViewModel
+    private val vm: RoutinesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +35,6 @@ class RoutinesFragment : BaseFragment() {
     }
 
     private fun continueLoading() {
-        vm = ViewModelProviders.of(this).get(RoutinesViewModel::class.java)
-        vm.init(userId!!)
         val routinesLiveData = vm.getUserRoutineLiveData()
         routinesLiveData.observe(this, Observer<QuerySnapshot> { query ->
             vm.setRoutinesList(query)
