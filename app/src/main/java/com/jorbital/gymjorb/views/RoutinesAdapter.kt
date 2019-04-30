@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.routine_list_item.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
 class RoutinesAdapter(var items: List<Routine>) : RecyclerView.Adapter<RoutinesAdapter.RoutineViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.routine_list_item, parent, false)
@@ -30,8 +29,9 @@ class RoutinesAdapter(var items: List<Routine>) : RecyclerView.Adapter<RoutinesA
         return items.size
     }
 
-    fun updateRoutines(routines: List<Routine>){
+    fun updateRoutines(routines: List<Routine>) {
         items = routines
+        notifyDataSetChanged()
     }
 
     inner class RoutineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -48,8 +48,7 @@ class RoutinesAdapter(var items: List<Routine>) : RecyclerView.Adapter<RoutinesA
             else {
                 val diff = now.time - then.time
                 val days = TimeUnit.MILLISECONDS.toDays(diff)
-                itemView.lastPerformed.text =
-                    String.format(itemView.context.getString(R.string.routines_last_performed), days)
+                itemView.lastPerformed.text = itemView.context.getString(R.string.routines_last_performed, days)
             }
 
             val weekdays = routine.days
@@ -66,32 +65,32 @@ class RoutinesAdapter(var items: List<Routine>) : RecyclerView.Adapter<RoutinesA
             for (day in weekdays) {
                 val accent = ResourcesCompat.getColor(itemView.resources, R.color.colorAccent, null)
 
-                when {
-                    day == DaysOfWeek.MONDAY.value -> {
+                when (day) {
+                    DaysOfWeek.MONDAY.value -> {
                         itemView.routineMonday.setTextColor(accent)
                         itemView.routineMonday.setTypeface(null, Typeface.BOLD)
                     }
-                    day == DaysOfWeek.TUESDAY.value -> {
+                    DaysOfWeek.TUESDAY.value -> {
                         itemView.routineTuesday.setTextColor(accent)
                         itemView.routineTuesday.setTypeface(null, Typeface.BOLD)
                     }
-                    day == DaysOfWeek.WEDNESDAY.value -> {
+                    DaysOfWeek.WEDNESDAY.value -> {
                         itemView.routineWednesday.setTextColor(accent)
                         itemView.routineWednesday.setTypeface(null, Typeface.BOLD)
                     }
-                    day == DaysOfWeek.THURSDAY.value -> {
+                    DaysOfWeek.THURSDAY.value -> {
                         itemView.routineThursday.setTextColor(accent)
                         itemView.routineThursday.setTypeface(null, Typeface.BOLD)
                     }
-                    day == DaysOfWeek.FRIDAY.value -> {
+                    DaysOfWeek.FRIDAY.value -> {
                         itemView.routineFriday.setTextColor(accent)
                         itemView.routineFriday.setTypeface(null, Typeface.BOLD)
                     }
-                    day == DaysOfWeek.SATURDAY.value -> {
+                    DaysOfWeek.SATURDAY.value -> {
                         itemView.routineSaturday.setTextColor(accent)
                         itemView.routineSaturday.setTypeface(null, Typeface.BOLD)
                     }
-                    day == DaysOfWeek.SUNDAY.value -> {
+                    DaysOfWeek.SUNDAY.value -> {
                         itemView.routineSunday.setTextColor(accent)
                         itemView.routineSunday.setTypeface(null, Typeface.BOLD)
                     }

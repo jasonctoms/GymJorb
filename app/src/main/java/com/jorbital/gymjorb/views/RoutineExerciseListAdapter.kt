@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jorbital.gymjorb.R
 import kotlinx.android.synthetic.main.routine_exercise_list_item.view.*
 
-class RoutineExerciseListAdapter(var items: List<Map<String, String>>) :
+class RoutineExerciseListAdapter(var items: List<HashMap<String, String>>) :
     RecyclerView.Adapter<RoutineExerciseListAdapter.RoutineExerciseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineExerciseViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.routine_exercise_list_item, parent, false)
@@ -25,9 +25,10 @@ class RoutineExerciseListAdapter(var items: List<Map<String, String>>) :
 
     inner class RoutineExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        internal fun bind(exercise: Map<String, String>) {
-            itemView.routineExerciseName.text = exercise.getValue("exerciseId")
-            itemView.numberOfSets.text = exercise.getValue("reps")
+        internal fun bind(exercise: HashMap<String, String>) {
+            itemView.routineExerciseName.text = exercise.getValue("exerciseName")
+            itemView.numberOfSets.text =
+                itemView.context.getString(R.string.routines_number_sets, exercise.getValue("reps"))
         }
 
     }

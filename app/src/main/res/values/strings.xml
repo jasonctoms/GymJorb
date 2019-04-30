@@ -5,8 +5,8 @@
     <string name="drawer_settings">Settings</string>
     <string name="drawer_report_bug">Report a bug</string>
 
-    <string name="routines_last_performed" formatted="false">Last Performed: %d days ago</string>
-    <string name="routines_number_sets" formatted="false">x %d sets</string>
+    <string name="routines_last_performed">Last Performed: %d days ago</string>
+    <string name="routines_number_sets">&#160;x %s sets</string>
     <string name="routines_never">Never</string>
     <string name="routines_start_routine">Start routine</string>
     <string name="routines_start_free_workout">Start a free workout</string>
