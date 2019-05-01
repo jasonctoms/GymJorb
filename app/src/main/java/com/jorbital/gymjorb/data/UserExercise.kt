@@ -1,5 +1,8 @@
 package com.jorbital.gymjorb.data
 
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+
 data class UserExercise(
     val userId: String = "",
     val name: String = "",
@@ -8,3 +11,11 @@ data class UserExercise(
     val timerValue: Int = 60,
     val custom: Boolean = false
 )
+
+class UserExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
+
+    override val rootCollection = "userExercises"
+
+    fun userExercises(): Query =
+        db().whereEqualTo(UserExercise::userId.name, userId).whereEqualTo(UserExercise::custom.name, true)
+}

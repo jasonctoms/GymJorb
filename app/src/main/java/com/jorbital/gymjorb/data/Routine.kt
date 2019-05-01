@@ -12,10 +12,14 @@ data class Routine(
     val lastCompleted: Date? = null
 )
 
-class RoutineDao(firestore: FirebaseFirestore): BaseDao(firestore) {
+class RoutineDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
 
     override val rootCollection = "routines"
 
     fun userRoutines(): Query = db()
         .whereEqualTo(Routine::userId.name, userId)
+
+    fun addNewRoutine(routine: Routine) {
+        db().add(routine)
+    }
 }

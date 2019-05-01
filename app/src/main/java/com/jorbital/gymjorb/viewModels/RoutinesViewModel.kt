@@ -7,7 +7,7 @@ import com.jorbital.gymjorb.data.Routine
 import com.jorbital.gymjorb.data.RoutineDao
 import com.jorbital.gymjorb.utils.FirestoreQueryLiveData
 
-class RoutinesViewModel(private val dao: RoutineDao) : ViewModel() {
+class RoutinesViewModel(dao: RoutineDao) : ViewModel() {
 
     private val routinesQuery = dao.userRoutines()
 

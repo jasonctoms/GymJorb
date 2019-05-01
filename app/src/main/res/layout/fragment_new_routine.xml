@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.NewRoutineFragment">
+
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/new_routine_title"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/new_routine_name"
+            android:layout_marginTop="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:id="@+id/nameLayout"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameEditText"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+            android:text="@string/new_routine_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/daysHeader"
+            style="@style/SectionHeaderTextStyle"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/nameLayout"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/daysHeader"
+            android:baselineAligned="false"
+            android:id="@+id/linearLayout">
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1">
+
+            <ToggleButton
+                    android:id="@+id/checkbox_monday"
+                    style="@style/DayToggleButton"
+                    android:textOff="@string/new_routine_monday"
+                    android:textOn="@string/new_routine_monday"
+                    tools:checked="true"/>
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1">
+
+            <ToggleButton
+                    android:id="@+id/checkbox_tuesday"
+                    style="@style/DayToggleButton"
+                    android:textOff="@string/new_routine_tuesday"
+                    android:textOn="@string/new_routine_tuesday"/>
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1">
+
+            <ToggleButton
+                    android:id="@+id/checkbox_wednesday"
+                    style="@style/DayToggleButton"
+                    android:textOff="@string/new_routine_wednesday"
+                    android:textOn="@string/new_routine_wednesday"/>
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1">
+
+            <ToggleButton
+                    android:id="@+id/checkbox_thursday"
+                    style="@style/DayToggleButton"
+                    android:textOff="@string/new_routine_thursday"
+                    android:textOn="@string/new_routine_thursday"/>
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1">
+
+            <ToggleButton
+                    android:id="@+id/checkbox_friday"
+                    style="@style/DayToggleButton"
+                    android:textOff="@string/new_routine_friday"
+                    android:textOn="@string/new_routine_friday"/>
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1">
+
+            <ToggleButton
+                    android:id="@+id/checkbox_saturday"
+                    style="@style/DayToggleButton"
+                    android:textOff="@string/new_routine_saturday"
+                    android:textOn="@string/new_routine_saturday"/>
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1">
+
+            <ToggleButton
+                    android:id="@+id/checkbox_sunday"
+                    style="@style/DayToggleButton"
+                    android:textOff="@string/new_routine_sunday"
+                    android:textOn="@string/new_routine_sunday"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+            android:text="@string/new_routine_exercises"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/exercisesHeader"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            style="@style/SectionHeaderTextStyle"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/exercisesHeader"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/exercisesRv"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

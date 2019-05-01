@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.QuerySnapshot
@@ -34,6 +33,11 @@ class RoutinesFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_routines, container, false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        mainActivity.setFabIcon(R.drawable.ic_add)
+    }
+
     private fun continueLoading() {
         val routinesLiveData = vm.getUserRoutineLiveData()
         routinesLiveData.observe(this, Observer<QuerySnapshot> { query ->
@@ -53,5 +57,14 @@ class RoutinesFragment : BaseFragment() {
             val adapter = routinesRv.adapter as RoutinesAdapter
             adapter.updateRoutines(routines)
         }
+    }
+
+    override fun fabClicked() {
+        this.findNavController().navigate(R.id.action_routinesFragment_to_newRoutineFragment)
+    }
+
+    override fun handleOnBackPressed(): Boolean {
+        //There is no "back" from this fragment
+        return true
     }
 }

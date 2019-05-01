@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun setFabIcon(iconResId: Int) {
+        fab.setImageDrawable(getDrawable(iconResId))
+    }
+
     fun signedOutGoToLogin() {
         this.findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_loginFragment)
     }

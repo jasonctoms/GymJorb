@@ -18,4 +18,16 @@
     <string name="routines_saturday">Sat</string>
     <string name="routines_sunday">Sun</string>
 
+    <string name="new_routine_title">New Routine</string>
+    <string name="new_routine_name">Name</string>
+    <string name="new_routine_days">Days</string>
+    <string name="new_routine_exercises">Exercises</string>
+    <string name="new_routine_monday">Mo</string>
+    <string name="new_routine_tuesday">Tu</string>
+    <string name="new_routine_wednesday">We</string>
+    <string name="new_routine_thursday">Th</string>
+    <string name="new_routine_friday">Fr</string>
+    <string name="new_routine_saturday">Sa</string>
+    <string name="new_routine_sunday">Su</string>
+
 </resources>
