@@ -8,13 +8,14 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.data.DaysOfWeek
+import com.jorbital.gymjorb.data.ORDER
 import com.jorbital.gymjorb.data.Routine
 import com.jorbital.gymjorb.utils.toast
 import kotlinx.android.synthetic.main.routine_list_item.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class RoutinesAdapter(var items: List<Routine>) : RecyclerView.Adapter<RoutinesAdapter.RoutineViewHolder>() {
+class RoutinesAdapter(private var items: List<Routine>) : RecyclerView.Adapter<RoutinesAdapter.RoutineViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.routine_list_item, parent, false)
         return RoutineViewHolder(v)
@@ -58,7 +59,8 @@ class RoutinesAdapter(var items: List<Routine>) : RecyclerView.Adapter<RoutinesA
             itemView.routineExercisesRV.layoutManager =
                 androidx.recyclerview.widget.LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
             itemView.routineExercisesRV.isNestedScrollingEnabled = false
-            itemView.routineExercisesRV.adapter = RoutineExerciseListAdapter(routine.exercises)
+            val sortedExercises = routine.exercises.sortedBy { x -> x[ORDER] }
+            itemView.routineExercisesRV.adapter = RoutineExerciseListAdapter(sortedExercises)
         }
 
         private fun setWeekdays(weekdays: List<Int>) {
