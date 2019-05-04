@@ -10,7 +10,7 @@ class DefaultExerciseCreator {
 
     fun createDefaultExercises() {
         val dbDefaults = FirebaseFirestore.getInstance().collection("defaultExercises")
-        val langUS = "en-US"
+        val langUS = "en_US"
 
         val bbbpEng = DefaultExercise(
             langUS,

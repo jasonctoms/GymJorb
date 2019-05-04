@@ -41,5 +41,16 @@
             android:id="@+id/newRoutineFragment"
             android:name="com.jorbital.gymjorb.views.newroutine.NewRoutineFragment"
             android:label="fragment_new_routine"
-            tools:layout="@layout/fragment_new_routine"/>
+            tools:layout="@layout/fragment_new_routine">
+        <action
+                android:id="@+id/action_newRoutineFragment_to_exercisePickerFragment"
+                app:destination="@id/exercisePickerFragment"
+                app:enterAnim="@anim/nav_default_pop_enter_anim"
+                app:exitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+            android:id="@+id/exercisePickerFragment"
+            android:name="com.jorbital.gymjorb.views.newroutine.ExercisePickerFragment"
+            android:label="fragment_exercise_picker"
+            tools:layout="@layout/fragment_exercise_picker"/>
 </navigation>

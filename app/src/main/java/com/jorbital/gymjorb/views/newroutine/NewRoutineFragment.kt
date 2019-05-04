@@ -13,11 +13,11 @@ import com.jorbital.gymjorb.data.UserExercise
 import com.jorbital.gymjorb.viewmodels.NewRoutineViewModel
 import com.jorbital.gymjorb.views.BaseFragment
 import kotlinx.android.synthetic.main.fragment_new_routine.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class NewRoutineFragment : BaseFragment() {
     override val hasAppBar = true
-    private val vm: NewRoutineViewModel by viewModel()
+    private val vm: NewRoutineViewModel by sharedViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,7 @@ class NewRoutineFragment : BaseFragment() {
             vm.setUserExerciseList(query)
             vm.createExerciseListForPicker()
         })
+        vm.changeTest()
     }
 
     override fun onCreateView(
@@ -44,6 +45,7 @@ class NewRoutineFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
         mainActivity.setFabIcon(R.drawable.ic_save)
+        addExercisesButton.setOnClickListener { openPicker() }
     }
 
     private fun updateAdapter(exercises: List<UserExercise>) {
@@ -56,6 +58,10 @@ class NewRoutineFragment : BaseFragment() {
             val adapter = exercisesRv.adapter as NewRoutineExerciseAdapter
             adapter.updateRoutines(exercises)
         }
+    }
+
+    private fun openPicker() {
+        this.findNavController().navigate(R.id.action_newRoutineFragment_to_exercisePickerFragment)
     }
 
     override fun fabClicked() {

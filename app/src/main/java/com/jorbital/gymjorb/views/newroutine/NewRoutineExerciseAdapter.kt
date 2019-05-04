@@ -12,18 +12,16 @@ import kotlinx.android.synthetic.main.new_routine_exercise_list_item.view.*
 class NewRoutineExerciseAdapter(private var items: List<UserExercise>) :
     RecyclerView.Adapter<NewRoutineExerciseAdapter.NewRoutineExerciseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewRoutineExerciseViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.routine_list_item, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.new_routine_exercise_list_item, parent, false)
         return NewRoutineExerciseViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: NewRoutineExerciseViewHolder, position: Int) {
         val exercise = items[position]
-        holder.bind(exercise, holder)
+        holder.bind(exercise)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
     fun updateRoutines(exercises: List<UserExercise>) {
         items = exercises
@@ -32,8 +30,8 @@ class NewRoutineExerciseAdapter(private var items: List<UserExercise>) :
 
     inner class NewRoutineExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        internal fun bind(exercise: UserExercise, holder: NewRoutineExerciseViewHolder) {
-            holder.itemView.setOnClickListener { view -> itemClicked(view) }
+        internal fun bind(exercise: UserExercise) {
+            itemView.setOnClickListener { view -> itemClicked(view) }
             itemView.exerciseName.text = exercise.name
             itemView.numSets.text = exercise.sets.toString()
             itemView.numReps.text = exercise.reps.toString()

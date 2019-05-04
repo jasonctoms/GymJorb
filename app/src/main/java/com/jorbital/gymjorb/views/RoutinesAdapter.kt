@@ -23,12 +23,10 @@ class RoutinesAdapter(private var items: List<Routine>) : RecyclerView.Adapter<R
 
     override fun onBindViewHolder(holder: RoutineViewHolder, position: Int) {
         val routine = items[position]
-        holder.bind(routine, holder)
+        holder.bind(routine)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
     fun updateRoutines(routines: List<Routine>) {
         items = routines
@@ -37,8 +35,8 @@ class RoutinesAdapter(private var items: List<Routine>) : RecyclerView.Adapter<R
 
     inner class RoutineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        internal fun bind(routine: Routine, holder: RoutineViewHolder) {
-            holder.itemView.setOnClickListener { view -> itemClicked(view) }
+        internal fun bind(routine: Routine) {
+            itemView.setOnClickListener { view -> itemClicked(view) }
             itemView.startRoutineButton.setOnClickListener { view -> buttonClicked(view) }
             itemView.routineName.text = routine.name
 
