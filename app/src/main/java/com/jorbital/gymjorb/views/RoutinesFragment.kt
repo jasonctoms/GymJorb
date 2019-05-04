@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.QuerySnapshot
 import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.data.Routine
-import com.jorbital.gymjorb.viewModels.RoutinesViewModel
+import com.jorbital.gymjorb.viewmodels.RoutinesViewModel
 import kotlinx.android.synthetic.main.fragment_routines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

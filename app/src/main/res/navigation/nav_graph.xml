@@ -17,7 +17,9 @@
                 app:popUpToInclusive="true"/>
         <action
                 android:id="@+id/action_routinesFragment_to_newRoutineFragment"
-                app:destination="@id/newRoutineFragment"/>
+                app:destination="@id/newRoutineFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"/>
     </fragment>
     <fragment
             android:id="@+id/loginFragment"
@@ -37,7 +39,7 @@
             app:popUpToInclusive="true"/>
     <fragment
             android:id="@+id/newRoutineFragment"
-            android:name="com.jorbital.gymjorb.views.NewRoutineFragment"
+            android:name="com.jorbital.gymjorb.views.newroutine.NewRoutineFragment"
             android:label="fragment_new_routine"
             tools:layout="@layout/fragment_new_routine"/>
 </navigation>

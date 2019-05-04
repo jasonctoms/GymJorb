@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.NewRoutineFragment">
+        tools:context=".views.newroutine.NewRoutineFragment">
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -161,7 +161,8 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/exercisesRv"
-            app:layout_constraintTop_toBottomOf="@+id/exercisesHeader"/>
+            app:layout_constraintTop_toBottomOf="@+id/exercisesHeader"
+            tools:listitem="@layout/new_routine_exercise_list_item"/>
 
     <Button
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"

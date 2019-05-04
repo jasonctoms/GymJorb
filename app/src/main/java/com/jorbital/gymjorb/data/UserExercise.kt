@@ -11,7 +11,8 @@ data class UserExercise(
     val timerValue: Int = 60,
     val sets: Int = 1,
     val reps: Int = 1,
-    val custom: Boolean = false
+    val custom: Boolean = false,
+    val keyString: String = ""
 )
 
 class UserExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
@@ -20,4 +21,8 @@ class UserExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
 
     fun userCustomExercises(): Query =
         db().whereEqualTo(UserExercise::userId.name, userId).whereEqualTo(UserExercise::custom.name, true)
+
+    fun addUserExercise(exercise: UserExercise){
+        db().document(exercise.keyString).set(exercise)
+    }
 }

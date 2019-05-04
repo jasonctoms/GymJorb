@@ -2,6 +2,7 @@ package com.jorbital.gymjorb.data
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import java.util.*
 
 data class DefaultExercise(
     val language: String = "en-US",
@@ -15,5 +16,5 @@ class DefaultExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
 
     override val rootCollection = "defaultExercises"
 
-    fun defaultExercises(): Query = db()
+    fun defaultExercises(): Query = db().whereEqualTo(DefaultExercise::language.name, Locale.getDefault().toString())
 }

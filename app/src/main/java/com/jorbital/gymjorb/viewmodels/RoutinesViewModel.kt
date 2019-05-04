@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb.viewModels
+package com.jorbital.gymjorb.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -21,9 +21,9 @@ class RoutinesViewModel(dao: RoutineDao) : ViewModel() {
     fun setRoutinesList(query: QuerySnapshot) {
         userRoutines.clear()
         for (document in query.documents) {
-            val test = document.toObject(Routine::class.java)
-            if (test != null)
-                userRoutines.add(test)
+            val routine = document.toObject(Routine::class.java)
+            if (routine != null)
+                userRoutines.add(routine)
         }
     }
 }
