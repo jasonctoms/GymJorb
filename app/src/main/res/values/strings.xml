@@ -22,6 +22,10 @@
     <string name="new_routine_name">Name</string>
     <string name="new_routine_days">Days</string>
     <string name="new_routine_exercises">Exercises</string>
+    <string name="new_routine_add_exercises">Add Exercises</string>
+    <string name="new_routine_sets">Sets</string>
+    <string name="new_routine_reps">Reps</string>
+    <string name="new_routine_timer">Timer</string>
     <string name="new_routine_monday">Mo</string>
     <string name="new_routine_tuesday">Tu</string>
     <string name="new_routine_wednesday">We</string>

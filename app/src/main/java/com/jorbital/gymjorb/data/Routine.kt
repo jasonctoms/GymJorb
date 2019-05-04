@@ -4,11 +4,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.util.*
 
-const val EXERCISE_ID = "exerciseId"
-const val EXERCISE_NAME = "exerciseName"
-const val SETS = "sets"
-const val ORDER = "order"
-
 data class Routine(
     val userId: String = "",
     val name: String? = null,

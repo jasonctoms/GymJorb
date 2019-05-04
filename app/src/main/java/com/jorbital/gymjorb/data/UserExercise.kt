@@ -9,6 +9,8 @@ data class UserExercise(
     val type: Int = ExerciseType.UNKNOWN.value,
     val muscleGroups: List<Int> = emptyList(),
     val timerValue: Int = 60,
+    val sets: Int = 1,
+    val reps: Int = 1,
     val custom: Boolean = false
 )
 
@@ -16,6 +18,6 @@ class UserExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
 
     override val rootCollection = "userExercises"
 
-    fun userExercises(): Query =
+    fun userCustomExercises(): Query =
         db().whereEqualTo(UserExercise::userId.name, userId).whereEqualTo(UserExercise::custom.name, true)
 }

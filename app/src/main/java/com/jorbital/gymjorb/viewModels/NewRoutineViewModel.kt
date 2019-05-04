@@ -1,5 +1,6 @@
 package com.jorbital.gymjorb.viewModels
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jorbital.gymjorb.data.*
 
@@ -9,13 +10,12 @@ class NewRoutineViewModel(
     private val userExerciseDao: UserExerciseDao
 ) : ViewModel() {
 
-    fun saveRoutine(name: String, days: List<DaysOfWeek>, exercises: List<UserExercise>) {
-
+    val newRoutine: MutableLiveData<Routine> by lazy {
+        MutableLiveData<Routine>()
     }
 
-    fun test() {
-        var test1 = routineDao.userRoutines()
-        var test2 = defaultExerciseDao.defaultExercises()
-        var test3 = userExerciseDao.userExercises()
+    fun saveRoutine() {
+        val routine = newRoutine.value
     }
+
 }
