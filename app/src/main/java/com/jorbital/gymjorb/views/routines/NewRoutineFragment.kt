@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionInflater
 import com.google.firebase.firestore.QuerySnapshot
 import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.data.UserExercise
@@ -41,12 +42,19 @@ class NewRoutineFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         return inflater.inflate(R.layout.fragment_new_routine, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addExercisesButton.setOnClickListener { openPicker() }
+        postponeEnterTransition()
+        exercisesRv.viewTreeObserver
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
         if (vm.routineExercises.value != null)
             updateAdapter(vm.routineExercises.value!!.toList())
     }
