@@ -162,7 +162,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/exercisesRv"
             app:layout_constraintTop_toBottomOf="@+id/exercisesHeader"
-            tools:listitem="@layout/new_routine_exercise_list_item"/>
+            tools:listitem="@layout/new_routine_exercise_list_item"
+            android:paddingBottom="@dimen/app_bar_with_fab_height"
+            android:clipToPadding="false"/>
 
     <Button
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
@@ -174,8 +176,6 @@
             app:layout_constraintStart_toEndOf="@+id/exercisesHeader"
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/exercisesHeader"
-            app:layout_constraintBottom_toBottomOf="@+id/exercisesHeader"
-            />
-
+            app:layout_constraintBottom_toBottomOf="@+id/exercisesHeader"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

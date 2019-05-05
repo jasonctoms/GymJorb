@@ -10,10 +10,10 @@ import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.viewmodels.NewRoutineViewModel
 import kotlinx.android.synthetic.main.exercise_picker_item.view.*
 
-class ExercisePickerAdapter(
-    private val items: List<NewRoutineViewModel.ExerciseListItem>
-) : RecyclerView.Adapter<ExercisePickerAdapter.ExercisePickerViewHolder>() {
+class ExercisePickerAdapter(val items: List<NewRoutineViewModel.ExerciseListItem>, val itemClick: (Int) -> Unit) :
+    RecyclerView.Adapter<ExercisePickerAdapter.ExercisePickerViewHolder>() {
     var tracker: SelectionTracker<Long>? = null
+    var isSelecting: Boolean = false
 
     init {
         setHasStableIds(true)
@@ -38,6 +38,7 @@ class ExercisePickerAdapter(
     inner class ExercisePickerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         internal fun bind(exercise: NewRoutineViewModel.ExerciseListItem, isActivated: Boolean = false) {
+            itemView.setOnClickListener { itemClick(adapterPosition) }
             itemView.exerciseName.text = exercise.name
             itemView.isActivated = isActivated
         }
@@ -47,6 +48,5 @@ class ExercisePickerAdapter(
                 override fun getPosition(): Int = adapterPosition
                 override fun getSelectionKey(): Long? = itemId
             }
-
     }
 }

@@ -20,16 +20,20 @@ class NewRoutineViewModel(
         MutableLiveData<List<UserExercise>>()
     }
 
+    fun initRoutineExercises() {
+        routineExercises.value = mutableListOf()
+    }
+
     var exercisePickerList: List<ExerciseListItem> = emptyList()
 
-    var userExercises: List<UserExercise> = emptyList()
+    private var userExercises: List<UserExercise> = emptyList()
     private val userExerciseQuery = userExerciseDao.userCustomExercises()
     private val userExerciseQueryLiveData = FirestoreQueryLiveData(userExerciseQuery)
     fun getUserExerciseLiveData(): LiveData<QuerySnapshot> {
         return userExerciseQueryLiveData
     }
 
-    var defaultExercises: List<DefaultExercise> = emptyList()
+    private var defaultExercises: List<DefaultExercise> = emptyList()
     private val defaultExerciseQuery = defaultExerciseDao.defaultExercises()
     private val defaultExerciseQueryLiveData = FirestoreQueryLiveData(defaultExerciseQuery)
     fun getDefaultExerciseLiveData(): LiveData<QuerySnapshot> {
@@ -86,7 +90,24 @@ class NewRoutineViewModel(
             )
             currentList?.add(newExercise)
         }
-        routineExercises.postValue(currentList?.toList())
+        routineExercises.value = currentList?.toList()
+    }
+
+    fun addSingleUserExercise(exercise: ExerciseListItem) {
+        val currentList = routineExercises.value?.toMutableList()
+        val newExercise = UserExercise(
+            currentUser.uid,
+            exercise.name,
+            exercise.type,
+            exercise.muscleGroups,
+            60,
+            1,
+            1,
+            exercise.custom,
+            UUID.randomUUID().toString()
+        )
+        currentList?.add(newExercise)
+        routineExercises.value = currentList?.toList()
     }
 
     fun saveRoutine(name: String, days: List<Int>) {

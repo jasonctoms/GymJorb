@@ -21,6 +21,7 @@ class NewRoutineFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        vm.initRoutineExercises()
         vm.routineExercises.observe(this, Observer<List<UserExercise>> { exercises ->
             updateAdapter(exercises)
         })
