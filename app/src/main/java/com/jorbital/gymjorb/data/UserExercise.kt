@@ -2,6 +2,7 @@ package com.jorbital.gymjorb.data
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 
 data class UserExercise(
     val userId: String = "",
@@ -22,7 +23,17 @@ class UserExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
     fun userCustomExercises(): Query =
         db().whereEqualTo(UserExercise::userId.name, userId).whereEqualTo(UserExercise::custom.name, true)
 
-    fun addUserExercise(exercise: UserExercise){
+    fun mapUserExercises(query: QuerySnapshot): List<UserExercise> {
+        val exercises: MutableList<UserExercise> = mutableListOf()
+        for (document in query.documents) {
+            val exercise = document.toObject(UserExercise::class.java)
+            if (exercise != null)
+                exercises.add(exercise)
+        }
+        return exercises.toList()
+    }
+
+    fun addUserExercise(exercise: UserExercise) {
         db().document(exercise.keyString).set(exercise)
     }
 }

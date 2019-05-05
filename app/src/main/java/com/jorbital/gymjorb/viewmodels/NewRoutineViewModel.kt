@@ -11,7 +11,7 @@ import java.util.*
 
 class NewRoutineViewModel(
     private val routineDao: RoutineDao,
-    defaultExerciseDao: DefaultExerciseDao,
+    private val defaultExerciseDao: DefaultExerciseDao,
     private val userExerciseDao: UserExerciseDao,
     private val currentUser: FirebaseUser
 ) : ViewModel() {
@@ -22,14 +22,14 @@ class NewRoutineViewModel(
 
     var exercisePickerList: List<ExerciseListItem> = emptyList()
 
-    var userExercises: MutableList<UserExercise> = mutableListOf()
+    var userExercises: List<UserExercise> = emptyList()
     private val userExerciseQuery = userExerciseDao.userCustomExercises()
     private val userExerciseQueryLiveData = FirestoreQueryLiveData(userExerciseQuery)
     fun getUserExerciseLiveData(): LiveData<QuerySnapshot> {
         return userExerciseQueryLiveData
     }
 
-    var defaultExercises: MutableList<DefaultExercise> = mutableListOf()
+    var defaultExercises: List<DefaultExercise> = emptyList()
     private val defaultExerciseQuery = defaultExerciseDao.defaultExercises()
     private val defaultExerciseQueryLiveData = FirestoreQueryLiveData(defaultExerciseQuery)
     fun getDefaultExerciseLiveData(): LiveData<QuerySnapshot> {
@@ -37,21 +37,11 @@ class NewRoutineViewModel(
     }
 
     fun setUserExerciseList(query: QuerySnapshot) {
-        userExercises.clear()
-        for (document in query.documents) {
-            val exercise = document.toObject(UserExercise::class.java)
-            if (exercise != null)
-                userExercises.add(exercise)
-        }
+        userExercises = userExerciseDao.mapUserExercises(query)
     }
 
     fun setDefaultExerciseList(query: QuerySnapshot) {
-        defaultExercises.clear()
-        for (document in query.documents) {
-            val exercise = document.toObject(DefaultExercise::class.java)
-            if (exercise != null)
-                defaultExercises.add(exercise)
-        }
+        defaultExercises = defaultExerciseDao.mapDefaultExercises(query)
     }
 
     fun createExerciseListForPicker() {

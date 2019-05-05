@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb.views.newroutine
+package com.jorbital.gymjorb.views.routines
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,7 +32,6 @@ class NewRoutineFragment : BaseFragment() {
             vm.setUserExerciseList(query)
             vm.createExerciseListForPicker()
         })
-        vm.changeTest()
     }
 
     override fun onCreateView(

@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb.views.newroutine
+package com.jorbital.gymjorb.views.exercisepicker
 
 import android.view.LayoutInflater
 import android.view.View

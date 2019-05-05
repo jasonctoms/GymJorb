@@ -7,11 +7,11 @@ import com.jorbital.gymjorb.data.Routine
 import com.jorbital.gymjorb.data.RoutineDao
 import com.jorbital.gymjorb.utils.FirestoreQueryLiveData
 
-class RoutinesViewModel(dao: RoutineDao) : ViewModel() {
+class RoutinesViewModel(private val dao: RoutineDao) : ViewModel() {
 
     private val routinesQuery = dao.userRoutines()
 
-    var userRoutines: MutableList<Routine> = mutableListOf()
+    var userRoutines: List<Routine> = emptyList()
 
     private val userRoutineQueryLiveData = FirestoreQueryLiveData(routinesQuery)
     fun getUserRoutineLiveData(): LiveData<QuerySnapshot> {
@@ -19,11 +19,6 @@ class RoutinesViewModel(dao: RoutineDao) : ViewModel() {
     }
 
     fun setRoutinesList(query: QuerySnapshot) {
-        userRoutines.clear()
-        for (document in query.documents) {
-            val routine = document.toObject(Routine::class.java)
-            if (routine != null)
-                userRoutines.add(routine)
-        }
+        userRoutines = dao.mapUserRoutines(query)
     }
 }

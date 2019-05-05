@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb.views
+package com.jorbital.gymjorb.views.routines
 
 import android.view.LayoutInflater
 import android.view.View

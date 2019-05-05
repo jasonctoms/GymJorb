@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb.views
+package com.jorbital.gymjorb.views.routines
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.data.Routine
 import com.jorbital.gymjorb.viewmodels.RoutinesViewModel
+import com.jorbital.gymjorb.views.BaseFragment
 import kotlinx.android.synthetic.main.fragment_routines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,8 +43,7 @@ class RoutinesFragment : BaseFragment() {
         val routinesLiveData = vm.getUserRoutineLiveData()
         routinesLiveData.observe(this, Observer<QuerySnapshot> { query ->
             vm.setRoutinesList(query)
-            val routines = vm.userRoutines.toList()
-            updateAdapter(routines)
+            updateAdapter(vm.userRoutines)
         })
     }
 

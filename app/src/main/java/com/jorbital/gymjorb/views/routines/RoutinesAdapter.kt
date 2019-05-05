@@ -1,4 +1,4 @@
-package com.jorbital.gymjorb.views
+package com.jorbital.gymjorb.views.routines
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
@@ -58,7 +58,8 @@ class RoutinesAdapter(private var items: List<Routine>) : RecyclerView.Adapter<R
                 androidx.recyclerview.widget.LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
             itemView.routineExercisesRV.isNestedScrollingEnabled = false
             val sortedExercises = routine.exercises.sortedBy { x -> x[ORDER] }
-            itemView.routineExercisesRV.adapter = RoutineExerciseListAdapter(sortedExercises)
+            itemView.routineExercisesRV.adapter =
+                RoutineExerciseListAdapter(sortedExercises)
         }
 
         private fun setWeekdays(weekdays: List<Int>) {

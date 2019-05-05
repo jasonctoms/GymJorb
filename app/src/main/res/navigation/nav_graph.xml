@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/routinesFragment"
-            android:name="com.jorbital.gymjorb.views.RoutinesFragment"
+            android:name="com.jorbital.gymjorb.views.routines.RoutinesFragment"
             android:label="fragment_routines"
             tools:layout="@layout/fragment_routines">
         <action
@@ -39,7 +39,7 @@
             app:popUpToInclusive="true"/>
     <fragment
             android:id="@+id/newRoutineFragment"
-            android:name="com.jorbital.gymjorb.views.newroutine.NewRoutineFragment"
+            android:name="com.jorbital.gymjorb.views.routines.NewRoutineFragment"
             android:label="fragment_new_routine"
             tools:layout="@layout/fragment_new_routine">
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
             android:id="@+id/exercisePickerFragment"
-            android:name="com.jorbital.gymjorb.views.newroutine.ExercisePickerFragment"
+            android:name="com.jorbital.gymjorb.views.exercisepicker.ExercisePickerFragment"
             android:label="fragment_exercise_picker"
             tools:layout="@layout/fragment_exercise_picker"/>
 </navigation>
