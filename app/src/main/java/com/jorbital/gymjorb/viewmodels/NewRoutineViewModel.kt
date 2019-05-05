@@ -16,8 +16,8 @@ class NewRoutineViewModel(
     private val currentUser: FirebaseUser
 ) : ViewModel() {
 
-    val routineExercises: MutableLiveData<List<UserExercise>> by lazy {
-        MutableLiveData<List<UserExercise>>()
+    val routineExercises: MutableLiveData<MutableList<UserExercise>> by lazy {
+        MutableLiveData<MutableList<UserExercise>>()
     }
 
     fun initRoutineExercises() {
@@ -75,7 +75,7 @@ class NewRoutineViewModel(
 
     //Call this on exiting the picker
     fun addUserExercises(exercises: List<ExerciseListItem>) {
-        val currentList = routineExercises.value?.toMutableList()
+        val currentList = routineExercises.value
         for (exercise in exercises) {
             val newExercise = UserExercise(
                 currentUser.uid,
@@ -90,11 +90,12 @@ class NewRoutineViewModel(
             )
             currentList?.add(newExercise)
         }
-        routineExercises.value = currentList?.toList()
+        routineExercises.value = currentList
     }
 
+    //Call this on exiting the picker with a single item
     fun addSingleUserExercise(exercise: ExerciseListItem) {
-        val currentList = routineExercises.value?.toMutableList()
+        val currentList = routineExercises.value
         val newExercise = UserExercise(
             currentUser.uid,
             exercise.name,
@@ -107,7 +108,12 @@ class NewRoutineViewModel(
             UUID.randomUUID().toString()
         )
         currentList?.add(newExercise)
-        routineExercises.value = currentList?.toList()
+        routineExercises.value = currentList
+    }
+
+    fun getExerciseAtPosition(position: Int): UserExercise? {
+        val exercises = routineExercises.value ?: return null
+        return exercises[position]
     }
 
     fun saveRoutine(name: String, days: List<Int>) {

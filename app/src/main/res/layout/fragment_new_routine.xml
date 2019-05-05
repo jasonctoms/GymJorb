@@ -14,8 +14,15 @@
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize"
             android:id="@+id/toolbar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/new_routine_title"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:text="@string/new_routine_title"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

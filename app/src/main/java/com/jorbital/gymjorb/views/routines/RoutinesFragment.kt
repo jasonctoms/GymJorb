@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.fragment_routines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RoutinesFragment : BaseFragment() {
-    override val hasAppBar: Boolean = true
+    override val hasAppBar = true
+    override val fabDrawableId = R.drawable.ic_add
     private val vm: RoutinesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +33,6 @@ class RoutinesFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_routines, container, false)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        mainActivity.setFabIcon(R.drawable.ic_add)
     }
 
     private fun continueLoading() {

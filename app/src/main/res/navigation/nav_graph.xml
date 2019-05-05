@@ -47,10 +47,27 @@
                 app:destination="@id/exercisePickerFragment"
                 app:enterAnim="@anim/nav_default_pop_enter_anim"
                 app:exitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+                android:id="@+id/action_newRoutineFragment_to_exerciseDetailsEditFragment"
+                app:destination="@+id/exerciseDetailsEditFragment"/>
     </fragment>
     <fragment
             android:id="@+id/exercisePickerFragment"
             android:name="com.jorbital.gymjorb.views.exercisepicker.ExercisePickerFragment"
             android:label="fragment_exercise_picker"
             tools:layout="@layout/fragment_exercise_picker"/>
+    <fragment
+            android:id="@+id/exerciseDetailsEditFragment"
+            android:name="com.jorbital.gymjorb.views.routines.ExerciseDetailsEditFragment"
+            android:label="fragment_exercise_details_edit"
+            tools:layout="@layout/fragment_exercise_details_edit">
+        <argument
+                android:name="position"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+        <argument
+                android:name="transitionName"
+                app:argType="string"
+                android:defaultValue="editExerciseDetails"/>
+    </fragment>
 </navigation>

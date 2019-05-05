@@ -27,9 +27,8 @@ class ExercisePickerFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_exercise_picker, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         fab.hide()
         fab.setOnClickListener { addSelectedExercises() }
 

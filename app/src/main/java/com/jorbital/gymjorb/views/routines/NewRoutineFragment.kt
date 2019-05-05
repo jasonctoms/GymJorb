@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.QuerySnapshot
@@ -17,6 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class NewRoutineFragment : BaseFragment() {
     override val hasAppBar = true
+    override val fabDrawableId = R.drawable.ic_save
     private val vm: NewRoutineViewModel by sharedViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,22 +45,32 @@ class NewRoutineFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_new_routine, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-        mainActivity.setFabIcon(R.drawable.ic_save)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         addExercisesButton.setOnClickListener { openPicker() }
+        if (vm.routineExercises.value != null)
+            updateAdapter(vm.routineExercises.value!!.toList())
     }
+
 
     private fun updateAdapter(exercises: List<UserExercise>) {
         if (exercisesRv.adapter == null) {
             exercisesRv.setHasFixedSize(true)
             exercisesRv.layoutManager = LinearLayoutManager(context)
-            val adapter = NewRoutineExerciseAdapter(exercises)
+            val adapter = NewRoutineExerciseAdapter(exercises){position, view -> openExerciseDetailsEditor(position, view)}
             exercisesRv.adapter = adapter
         } else {
             val adapter = exercisesRv.adapter as NewRoutineExerciseAdapter
             adapter.updateRoutines(exercises)
         }
+    }
+
+    private fun openExerciseDetailsEditor(position: Int, view: View){
+        val extras = FragmentNavigatorExtras(
+            view to view.transitionName
+        )
+        val action = NewRoutineFragmentDirections.actionNewRoutineFragmentToExerciseDetailsEditFragment(position, view.transitionName)
+        this.findNavController().navigate(action, extras)
     }
 
     private fun openPicker() {
