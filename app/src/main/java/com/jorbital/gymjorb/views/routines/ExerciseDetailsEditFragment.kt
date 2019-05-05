@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionInflater
@@ -38,6 +39,8 @@ class ExerciseDetailsEditFragment : BaseFragment() {
         val exercise = vm.getExerciseAtPosition(args.position)
         toolbarTitle.transitionName = args.transitionName
         toolbarTitle.text = exercise?.name
+        exerciseDetailsBackground.transitionName = args.backgroundTransitionName
+        fab.setOnClickListener { this.findNavController().popBackStack() }
     }
 
     override fun handleOnBackPressed(): Boolean {

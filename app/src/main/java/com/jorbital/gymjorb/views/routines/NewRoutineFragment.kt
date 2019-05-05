@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,7 +56,7 @@ class NewRoutineFragment : BaseFragment() {
         if (exercisesRv.adapter == null) {
             exercisesRv.setHasFixedSize(true)
             exercisesRv.layoutManager = LinearLayoutManager(context)
-            val adapter = NewRoutineExerciseAdapter(exercises){position, view -> openExerciseDetailsEditor(position, view)}
+            val adapter = NewRoutineExerciseAdapter(exercises){position, title, background -> openExerciseDetailsEditor(position, title, background)}
             exercisesRv.adapter = adapter
         } else {
             val adapter = exercisesRv.adapter as NewRoutineExerciseAdapter
@@ -65,11 +64,12 @@ class NewRoutineFragment : BaseFragment() {
         }
     }
 
-    private fun openExerciseDetailsEditor(position: Int, view: View){
+    private fun openExerciseDetailsEditor(position: Int, title: View, background: View){
         val extras = FragmentNavigatorExtras(
-            view to view.transitionName
+            title to title.transitionName,
+            background to background.transitionName
         )
-        val action = NewRoutineFragmentDirections.actionNewRoutineFragmentToExerciseDetailsEditFragment(position, view.transitionName)
+        val action = NewRoutineFragmentDirections.actionNewRoutineFragmentToExerciseDetailsEditFragment(position, title.transitionName, background.transitionName)
         this.findNavController().navigate(action, extras)
     }
 

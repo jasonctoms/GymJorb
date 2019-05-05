@@ -69,5 +69,9 @@
                 android:name="transitionName"
                 app:argType="string"
                 android:defaultValue="editExerciseDetails"/>
+        <argument
+                android:name="backgroundTransitionName"
+                app:argType="string"
+                android:defaultValue="editExerciseBackgroundTransition"/>
     </fragment>
 </navigation>

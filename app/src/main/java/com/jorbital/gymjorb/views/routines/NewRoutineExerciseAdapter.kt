@@ -8,7 +8,7 @@ import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.data.UserExercise
 import kotlinx.android.synthetic.main.new_routine_exercise_list_item.view.*
 
-class NewRoutineExerciseAdapter(private var items: List<UserExercise>, val itemClick: (Int, View) -> Unit) :
+class NewRoutineExerciseAdapter(private var items: List<UserExercise>, val itemClick: (Int, View, View) -> Unit) :
     RecyclerView.Adapter<NewRoutineExerciseAdapter.NewRoutineExerciseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewRoutineExerciseViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.new_routine_exercise_list_item, parent, false)
@@ -30,12 +30,13 @@ class NewRoutineExerciseAdapter(private var items: List<UserExercise>, val itemC
     inner class NewRoutineExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         internal fun bind(exercise: UserExercise) {
-            itemView.setOnClickListener { itemClick(adapterPosition, itemView.exerciseName) }
+            itemView.setOnClickListener { itemClick(adapterPosition, itemView.exerciseName, itemView.newExerciseCard) }
             itemView.exerciseName.text = exercise.name
             itemView.exerciseName.transitionName = "editExerciseDetails$adapterPosition"
             itemView.numSets.text = exercise.sets.toString()
             itemView.numReps.text = exercise.reps.toString()
             itemView.numTimer.text = exercise.timerValue.toString()
+            itemView.newExerciseCard.transitionName = "editExerciseBackground$adapterPosition"
         }
     }
 }
