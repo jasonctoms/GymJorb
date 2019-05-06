@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
@@ -49,22 +49,26 @@ class NewRoutineFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addExercisesButton.setOnClickListener { openPicker() }
+
+        //this makes the shared element transition work coming back
         postponeEnterTransition()
         exercisesRv.viewTreeObserver
             .addOnPreDrawListener {
                 startPostponedEnterTransition()
                 true
             }
+
         if (vm.routineExercises.value != null)
             updateAdapter(vm.routineExercises.value!!.toList())
     }
-
 
     private fun updateAdapter(exercises: List<UserExercise>) {
         if (exercisesRv.adapter == null) {
             exercisesRv.setHasFixedSize(true)
             exercisesRv.layoutManager = LinearLayoutManager(context)
-            val adapter = NewRoutineExerciseAdapter(exercises){position, title, background -> openExerciseDetailsEditor(position, title, background)}
+            val adapter =
+                NewRoutineExerciseAdapter(exercises) { position, extras ->
+                    openExerciseDetailsEditor(position, extras) }
             exercisesRv.adapter = adapter
         } else {
             val adapter = exercisesRv.adapter as NewRoutineExerciseAdapter
@@ -72,12 +76,20 @@ class NewRoutineFragment : BaseFragment() {
         }
     }
 
-    private fun openExerciseDetailsEditor(position: Int, title: View, background: View){
-        val extras = FragmentNavigatorExtras(
-            title to title.transitionName,
-            background to background.transitionName
+    private fun openExerciseDetailsEditor(position: Int, extras: FragmentNavigator.Extras) {
+        val titleTransition = TITLE_TRANSITION + position
+        val backgroundTransition = BACKGROUND_TRANSITION + position
+        val setsTransition = SETS_TRANSITION + position
+        val repsTransition = REPS_TRANSITION + position
+        val timerTransition = TIMER_TRANSITION + position
+        val action = NewRoutineFragmentDirections.actionNewRoutineFragmentToExerciseDetailsEditFragment(
+            position,
+            titleTransition,
+            backgroundTransition,
+            setsTransition,
+            repsTransition,
+            timerTransition
         )
-        val action = NewRoutineFragmentDirections.actionNewRoutineFragmentToExerciseDetailsEditFragment(position, title.transitionName, background.transitionName)
         this.findNavController().navigate(action, extras)
     }
 
@@ -88,7 +100,7 @@ class NewRoutineFragment : BaseFragment() {
     override fun fabClicked() {
         val days: MutableList<Int> = mutableListOf()
         //TODO: validate name not empty, create list of days from toggle buttons
-        vm.saveRoutine(nameEditText.text.toString(), days.toList())
+        vm.saveRoutine(setsEditText.text.toString(), days.toList())
         this.findNavController().popBackStack()
     }
 

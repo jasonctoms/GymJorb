@@ -1,21 +1,16 @@
 package com.jorbital.gymjorb.views.routines
 
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.transition.ChangeBounds
 import androidx.transition.TransitionInflater
 import com.jorbital.gymjorb.R
 import com.jorbital.gymjorb.viewmodels.NewRoutineViewModel
 import com.jorbital.gymjorb.views.BaseFragment
 import kotlinx.android.synthetic.main.fragment_exercise_details_edit.*
-import kotlinx.android.synthetic.main.fragment_new_routine.*
-import kotlinx.android.synthetic.main.fragment_new_routine.toolbarTitle
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ExerciseDetailsEditFragment : BaseFragment() {
@@ -37,9 +32,20 @@ class ExerciseDetailsEditFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val exercise = vm.getExerciseAtPosition(args.position)
-        toolbarTitle.transitionName = args.transitionName
-        toolbarTitle.text = exercise?.name
         exerciseDetailsBackground.transitionName = args.backgroundTransitionName
+
+        toolbarTitle.transitionName = args.titleTransitionName
+        toolbarTitle.text = exercise?.name
+
+        setsLayout.transitionName = args.setsTransitionName
+        setsEditText.setText( exercise?.sets.toString())
+
+        repsLayout.transitionName = args.repsTransitionName
+        repsEditText.setText(exercise?.reps.toString())
+
+        timerLayout.transitionName = args.timerTransitionName
+        timerEditText.setText(exercise?.timerValue.toString())
+
         fab.setOnClickListener { this.findNavController().popBackStack() }
     }
 

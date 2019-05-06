@@ -66,12 +66,24 @@
                 app:argType="integer"
                 android:defaultValue="-1"/>
         <argument
-                android:name="transitionName"
+                android:name="titleTransitionName"
                 app:argType="string"
-                android:defaultValue="editExerciseDetails"/>
+                android:defaultValue="titleTransition"/>
         <argument
                 android:name="backgroundTransitionName"
                 app:argType="string"
-                android:defaultValue="editExerciseBackgroundTransition"/>
+                android:defaultValue="backgroundTransition"/>
+        <argument
+                android:name="setsTransitionName"
+                app:argType="string"
+                android:defaultValue="setsTransition"/>
+        <argument
+                android:name="repsTransitionName"
+                app:argType="string"
+                android:defaultValue="repsTransition"/>
+        <argument
+                android:name="timerTransitionName"
+                app:argType="string"
+                android:defaultValue="timerTransition"/>
     </fragment>
 </navigation>
