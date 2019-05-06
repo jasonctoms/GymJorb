@@ -116,6 +116,25 @@ class NewRoutineViewModel(
         return exercises[position]
     }
 
+    fun updateExerciseAtPosition(position: Int, numSets: Int, numReps: Int, timerValue: Int) {
+        val exercises = routineExercises.value ?: return
+        val exercise = exercises[position]
+        val newExercise = UserExercise(
+            exercise.userId,
+            exercise.name,
+            exercise.type,
+            exercise.muscleGroups,
+            timerValue,
+            numSets,
+            numReps,
+            exercise.custom,
+            exercise.keyString
+        )
+        exercises.removeAt(position)
+        exercises.add(position, newExercise)
+        routineExercises.value = exercises
+    }
+
     fun saveRoutine(name: String, days: List<Int>) {
         val routineExercises: MutableList<HashMap<String, String>> = mutableListOf()
         this.routineExercises.value?.forEachIndexed { index, exercise ->

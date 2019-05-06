@@ -46,7 +46,15 @@ class ExerciseDetailsEditFragment : BaseFragment() {
         timerLayout.transitionName = args.timerTransitionName
         timerEditText.setText(exercise?.timerValue.toString())
 
-        fab.setOnClickListener { this.findNavController().popBackStack() }
+        fab.setOnClickListener { saveChanges() }
+    }
+
+    private fun saveChanges(){
+        val numSets = setsEditText.text.toString().toInt()
+        val numReps = repsEditText.text.toString().toInt()
+        val timerValue = timerEditText.text.toString().toInt()
+        vm.updateExerciseAtPosition(args.position, numSets, numReps, timerValue)
+        this.findNavController().popBackStack()
     }
 
     override fun handleOnBackPressed(): Boolean {

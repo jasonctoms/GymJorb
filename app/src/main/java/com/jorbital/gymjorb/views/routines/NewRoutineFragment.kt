@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.google.firebase.firestore.QuerySnapshot
 import com.jorbital.gymjorb.R
+import com.jorbital.gymjorb.data.DaysOfWeek
 import com.jorbital.gymjorb.data.UserExercise
 import com.jorbital.gymjorb.viewmodels.NewRoutineViewModel
 import com.jorbital.gymjorb.views.BaseFragment
@@ -68,7 +69,8 @@ class NewRoutineFragment : BaseFragment() {
             exercisesRv.layoutManager = LinearLayoutManager(context)
             val adapter =
                 NewRoutineExerciseAdapter(exercises) { position, extras ->
-                    openExerciseDetailsEditor(position, extras) }
+                    openExerciseDetailsEditor(position, extras)
+                }
             exercisesRv.adapter = adapter
         } else {
             val adapter = exercisesRv.adapter as NewRoutineExerciseAdapter
@@ -99,8 +101,22 @@ class NewRoutineFragment : BaseFragment() {
 
     override fun fabClicked() {
         val days: MutableList<Int> = mutableListOf()
-        //TODO: validate name not empty, create list of days from toggle buttons
-        vm.saveRoutine(setsEditText.text.toString(), days.toList())
+        if (checkbox_monday.isChecked)
+            days.add(DaysOfWeek.MONDAY.value)
+        if (checkbox_tuesday.isChecked)
+            days.add(DaysOfWeek.TUESDAY.value)
+        if (checkbox_wednesday.isChecked)
+            days.add(DaysOfWeek.WEDNESDAY.value)
+        if (checkbox_thursday.isChecked)
+            days.add(DaysOfWeek.THURSDAY.value)
+        if (checkbox_friday.isChecked)
+            days.add(DaysOfWeek.FRIDAY.value)
+        if (checkbox_saturday.isChecked)
+            days.add(DaysOfWeek.SATURDAY.value)
+        if (checkbox_sunday.isChecked)
+            days.add(DaysOfWeek.SUNDAY.value)
+
+        vm.saveRoutine(nameEditText.text.toString(), days.toList())
         this.findNavController().popBackStack()
     }
 
