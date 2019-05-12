@@ -34,7 +34,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setFabIcon(iconResId: Int) {
-        fab.setImageDrawable(getDrawable(iconResId))
+        //TODO: the show/hide is due to a bug in the fab library, so it can be removed one day
+        fab.hide()
+        fab.setImageResource(iconResId)
+        fab.show()
     }
 
     fun signedOutGoToLogin() {

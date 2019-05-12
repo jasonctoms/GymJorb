@@ -35,6 +35,11 @@ class RoutinesFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_routines, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        updateAdapter(vm.userRoutines)
+    }
+
     private fun continueLoading() {
         val routinesLiveData = vm.getUserRoutineLiveData()
         routinesLiveData.observe(this, Observer<QuerySnapshot> { query ->

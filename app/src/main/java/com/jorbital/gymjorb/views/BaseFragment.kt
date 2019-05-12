@@ -8,7 +8,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.jorbital.gymjorb.R
 
-
 abstract class BaseFragment : Fragment(), OnBackPressedCallback {
     protected var userId: String? = null
     abstract val hasAppBar: Boolean
@@ -20,21 +19,17 @@ abstract class BaseFragment : Fragment(), OnBackPressedCallback {
         super.onCreate(savedInstanceState)
         val user = FirebaseAuth.getInstance().currentUser
         userId = user?.uid
+        mainActivity = activity as MainActivity
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainActivity = activity as MainActivity
         mainActivity.showOrHideAppBar(hasAppBar)
+        if (hasAppBar)
+            mainActivity.setFabIcon(fabDrawableId)
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, this)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { fabClicked() }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (hasAppBar)
-            mainActivity.setFabIcon(fabDrawableId)
     }
 
     open fun fabClicked() {
