@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background_light">#FFFFFF</color>
     <color name="colorPrimary">#1565c0</color>
     <color name="colorPrimaryLight">#5e92f3</color>
     <color name="colorPrimaryDark">#003c8f</color>
@@ -9,4 +10,11 @@
 
     <color name="disabledText">#80808080</color>
     <color name="disabled_button">#CACFD1</color>
+
+    <color name="type_barbell">#66bb6a</color>
+    <color name="type_dumbbell">#9ccc65</color>
+    <color name="type_machine">#26a69a</color>
+    <color name="type_bodyweight">#ab47bc</color>
+    <color name="type_cardio">#ef5350</color>
+    <color name="type_other">#9e9e9e</color>
 </resources>

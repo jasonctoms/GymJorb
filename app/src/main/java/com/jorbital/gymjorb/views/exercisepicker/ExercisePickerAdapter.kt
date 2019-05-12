@@ -7,6 +7,7 @@ import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.RecyclerView
 import com.jorbital.gymjorb.R
+import com.jorbital.gymjorb.data.ExerciseType
 import com.jorbital.gymjorb.viewmodels.NewRoutineViewModel
 import kotlinx.android.synthetic.main.exercise_picker_item.view.*
 
@@ -41,6 +42,34 @@ class ExercisePickerAdapter(val items: List<NewRoutineViewModel.ExerciseListItem
             itemView.setOnClickListener { itemClick(adapterPosition) }
             itemView.exerciseName.text = exercise.name
             itemView.isActivated = isActivated
+
+            when {
+                exercise.type == ExerciseType.BARBELL.value -> {
+                    itemView.typeImageBackground.backgroundTintList =
+                        itemView.context.getColorStateList(R.color.type_barbell)
+                    itemView.exerciseTypeImage.setImageResource(R.drawable.ic_weights)
+                }
+                exercise.type == ExerciseType.DUMBBELL.value -> {
+                    itemView.typeImageBackground.backgroundTintList =
+                        itemView.context.getColorStateList(R.color.type_dumbbell)
+                    itemView.exerciseTypeImage.setImageResource(R.drawable.ic_weights)
+                }
+                exercise.type == ExerciseType.MACHINE.value -> {
+                    itemView.typeImageBackground.backgroundTintList =
+                        itemView.context.getColorStateList(R.color.type_machine)
+                    itemView.exerciseTypeImage.setImageResource(R.drawable.ic_machine)
+                }
+                exercise.type == ExerciseType.BODYWEIGHT.value -> {
+                    itemView.typeImageBackground.backgroundTintList =
+                        itemView.context.getColorStateList(R.color.type_bodyweight)
+                    itemView.exerciseTypeImage.setImageResource(R.drawable.ic_bodyweight)
+                }
+                exercise.type == ExerciseType.CARDIO.value -> {
+                    itemView.typeImageBackground.backgroundTintList =
+                        itemView.context.getColorStateList(R.color.type_cardio)
+                    itemView.exerciseTypeImage.setImageResource(R.drawable.ic_cardio)
+                }
+            }
         }
 
         fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =

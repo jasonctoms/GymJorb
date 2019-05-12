@@ -41,7 +41,8 @@ enum class ExerciseType(val value: Int) {
     DUMBBELL(2),
     MACHINE(3),
     CARDIO(4),
-    OTHER(5),
+    BODYWEIGHT(5),
+    OTHER(6),
 
     UNKNOWN(-1)
 }
