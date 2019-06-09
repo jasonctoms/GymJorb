@@ -3,6 +3,7 @@ package com.jorbital.gymjorb.data
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.toObject
 import java.util.*
 
 data class Routine(
@@ -23,7 +24,7 @@ class RoutineDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
     fun mapUserRoutines(query: QuerySnapshot): List<Routine> {
         val routines: MutableList<Routine> = mutableListOf()
         for (document in query.documents) {
-            val routine = document.toObject(Routine::class.java)
+            val routine = document.toObject<Routine>()
             if (routine != null)
                 routines.add(routine)
         }

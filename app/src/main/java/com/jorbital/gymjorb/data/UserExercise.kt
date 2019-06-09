@@ -3,6 +3,7 @@ package com.jorbital.gymjorb.data
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.toObject
 
 data class UserExercise(
     val userId: String = "",
@@ -26,7 +27,7 @@ class UserExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
     fun mapUserExercises(query: QuerySnapshot): List<UserExercise> {
         val exercises: MutableList<UserExercise> = mutableListOf()
         for (document in query.documents) {
-            val exercise = document.toObject(UserExercise::class.java)
+            val exercise = document.toObject<UserExercise>()
             if (exercise != null)
                 exercises.add(exercise)
         }

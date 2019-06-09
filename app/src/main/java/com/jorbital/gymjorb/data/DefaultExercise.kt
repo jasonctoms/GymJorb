@@ -3,6 +3,7 @@ package com.jorbital.gymjorb.data
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.toObject
 import java.util.*
 
 data class DefaultExercise(
@@ -22,7 +23,7 @@ class DefaultExerciseDao(firestore: FirebaseFirestore) : BaseDao(firestore) {
     fun mapDefaultExercises(query: QuerySnapshot): List<DefaultExercise> {
         val exercises: MutableList<DefaultExercise> = mutableListOf()
         for (document in query.documents) {
-            val exercise = document.toObject(DefaultExercise::class.java)
+            val exercise = document.toObject<DefaultExercise>()
             if (exercise != null)
                 exercises.add(exercise)
         }
