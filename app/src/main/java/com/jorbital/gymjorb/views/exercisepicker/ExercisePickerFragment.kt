@@ -85,8 +85,4 @@ class ExercisePickerFragment : BaseFragment() {
             this.findNavController().popBackStack()
         }
     }
-
-    override fun handleOnBackPressed(): Boolean {
-        return false
-    }
 }

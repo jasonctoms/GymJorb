@@ -56,8 +56,4 @@ class ExerciseDetailsEditFragment : BaseFragment() {
         vm.updateExerciseAtPosition(args.position, numSets, numReps, timerValue)
         this.findNavController().popBackStack()
     }
-
-    override fun handleOnBackPressed(): Boolean {
-        return false
-    }
 }

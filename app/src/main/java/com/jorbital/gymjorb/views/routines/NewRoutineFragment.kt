@@ -119,8 +119,4 @@ class NewRoutineFragment : BaseFragment() {
         vm.saveRoutine(nameEditText.text.toString(), days.toList())
         this.findNavController().popBackStack()
     }
-
-    override fun handleOnBackPressed(): Boolean {
-        return false
-    }
 }

@@ -64,8 +64,7 @@ class RoutinesFragment : BaseFragment() {
         this.findNavController().navigate(R.id.action_routinesFragment_to_newRoutineFragment)
     }
 
-    override fun handleOnBackPressed(): Boolean {
-        //There is no "back" from this fragment
-        return true
+    override fun backPressed() {
+        //no back press from this fragment
     }
 }
